@@ -44,7 +44,7 @@ public class TodoController {
         return repository.findById(id)
                 .map(existing -> {
                     repository.deleteById(id);
-                    return ResponseEntity.noContent().build();
+                    return ResponseEntity.noContent().<Void>build(); // This is the fix
                 }).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
